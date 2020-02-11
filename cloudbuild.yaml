@@ -1,0 +1,8 @@
+steps:
+  - name: "gcr.io/cloud-builders/go"
+    args: ["install", "github.com/damadei/gcp-cd-codelab"]
+    env: ["PROJECT_ROOT=github.com/damadei/gcp-cd-codelab"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/damadei-at-goog/gcp-cd-codelab:$REVISION_ID", "-f", "Dockerfile", "."]
+images:
+  - "gcr.io/damadei-at-goog/gcp-cd-codelab:$REVISION_ID"
